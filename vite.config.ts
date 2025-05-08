@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  base: '/skillizee-summer-spark/', // IMPORTANT: must match repo name
   plugins: [
     react(),
     mode === 'development' &&
