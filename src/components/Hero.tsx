@@ -14,9 +14,12 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="md:w-1/2">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
-              SkilliZee Summer School
-            </h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-2">
+            SkilliZee Summer School
+          </h1>
+          <p className="text-md md:text-lg font-semibold text-skillizee-blue mb-4">
+            Online Webinar Series – One-Sided Live Sessions
+          </p>
             <div className="bg-skillizee-orange/10 inline-block rounded-lg px-4 py-2 mb-6">
               <p className="text-xl md:text-2xl font-medium text-skillizee-orange">
                 Bootcamp like never before – 5 Days, 5 Skills
@@ -33,11 +36,6 @@ const Hero = () => {
               >
                 Register Now
               </Button>
-              <a href="https://drive.google.com/uc?export=download&id=1_JaD5vaKL-CAgQgfK25qmoOn3WkroaSN" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-skillizee-blue hover:bg-skillizee-blue/90 text-white px-8 py-6">
-                  Download Brochure
-                </Button>
-              </a>
             </div>
           </div>
           <div className="md:w-1/2 relative">

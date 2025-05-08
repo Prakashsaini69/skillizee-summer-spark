@@ -163,7 +163,7 @@ const RegistrationForm = () => {
             </h2>
             <div className="w-24 h-1 bg-skillizee-blue mx-auto mb-8"></div>
             <p className="text-lg text-gray-600">
-              Secure your child's spot in our interactive 5-day bootcamp and give them 
+              Secure your child's spot in our 5 day online webinar series and give them 
               the skills they need to thrive in the 21st century.
             </p>
           </div>
@@ -249,6 +249,14 @@ const RegistrationForm = () => {
             </form>
           </div>
         </div>
+
+        <div className="mb-16 text-center pt-[50px]">
+        <img 
+          src="https://res.cloudinary.com/dpstp4ovd/image/upload/v1746694759/3re3e_l9nu9d.svg" 
+          alt="Media features" 
+          className="mx-auto max-w-full h-auto"
+        />
+      </div>
       </div>
     </section>
   );

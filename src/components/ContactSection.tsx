@@ -64,21 +64,6 @@ const ContactSection = () => {
               </a>
             </div>
           </div>
-
-          <div className="mt-16 bg-white rounded-xl p-8 shadow-lg text-center">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Download Program Brochure
-            </h3>
-            <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-              Get all the detailed information about our SkilliZee Summer School program, 
-              schedule, and teaching methodology in our comprehensive brochure.
-            </p>
-            <a href="https://drive.google.com/uc?export=download&id=1_JaD5vaKL-CAgQgfK25qmoOn3WkroaSN" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-skillizee-blue hover:bg-skillizee-blue/90 text-white px-8 py-6">
-                Download Brochure
-              </Button>
-            </a>
-          </div>
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import {
   CarouselItem
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-
+import { Button } from "@/components/ui/button";
 import img1 from "@/assets/1.png";
 import img2 from "@/assets/2.png";
 import img3 from "@/assets/3.png";
@@ -39,6 +39,13 @@ const SkillsSection = () => {
     };
   }, [api, current]);
 
+  const scrollToRegistration = () => {
+    const registrationSection = document.getElementById("register");
+    if (registrationSection) {
+      registrationSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="skills" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -68,6 +75,16 @@ const SkillsSection = () => {
             </CarouselContent>
           </Carousel>
         </div>
+        <div className="flex justify-center pt-[40px] ">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Button 
+            className="bg-skillizee-blue hover:bg-skillizee-blue/90 text-white px-8 py-6 text-lg"
+            onClick={scrollToRegistration}
+          >
+            Register Now
+          </Button>
+        </div>
+      </div>
       </div>
     </section>
   );
