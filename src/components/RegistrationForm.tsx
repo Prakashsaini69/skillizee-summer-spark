@@ -1,9 +1,75 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+
+const CounterStat = ({ 
+  endValue, 
+  label, 
+  duration = 2000,
+  prefix = '',
+  suffix = ''
+}: { 
+  endValue: number; 
+  label: string;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+}) => {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+          
+          const startTime = Date.now();
+          const increment = Math.ceil(endValue / (duration / 16));
+          
+          const timer = setInterval(() => {
+            const elapsedTime = Date.now() - startTime;
+            if (elapsedTime >= duration) {
+              setCount(endValue);
+              clearInterval(timer);
+            } else {
+              const progress = elapsedTime / duration;
+              const nextValue = Math.min(Math.ceil(progress * endValue), endValue);
+              setCount(nextValue);
+            }
+          }, 16);
+          
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [endValue, duration, started]);
+  
+  return (
+    <div ref={ref} className="flex flex-col items-center">
+      <div className="text-3xl md:text-4xl font-bold text-skillizee-blue">
+        {prefix}{count}{suffix}
+      </div>
+      <div className="text-gray-600 mt-2">{label}</div>
+    </div>
+  );
+};
 
 const RegistrationForm = () => {
   const { toast } = useToast();
@@ -47,6 +113,14 @@ const RegistrationForm = () => {
   return (
     <section id="register" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <CounterStat endValue={15000} label="Students Taught" suffix="+" />
+            <CounterStat endValue={98} label="Satisfaction Rate" suffix="%" />
+            <CounterStat endValue={9.5} label="Student Rating" prefix="" suffix="/10" />
+          </div>
+        </div>
+        
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">

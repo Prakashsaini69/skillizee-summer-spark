@@ -1,7 +1,35 @@
 
 import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 const SkillsSection = () => {
+  const [api, setApi] = useState<any>(null);
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+
+    return () => {
+      clearInterval(interval);
+      api.off("select");
+    };
+  }, [api]);
+
   const skills = [
     {
       day: "Day 1",
@@ -54,19 +82,42 @@ const SkillsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skill, index) => (
-            <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
-              <div className={`h-2 ${skill.color}`}></div>
-              <CardContent className="pt-6">
-                <div className={`inline-block px-3 py-1 rounded-full mb-4 ${skill.lightColor} text-gray-800 font-medium text-sm`}>
-                  {skill.day}
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{skill.title}</h3>
-                <p className="text-gray-600">{skill.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="max-w-5xl mx-auto mb-16">
+          <Carousel 
+            className="w-full"
+            setApi={setApi}
+          >
+            <CarouselContent>
+              {skills.map((skill, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <Card className="border-none shadow-lg overflow-hidden h-full">
+                      <div className={`h-2 ${skill.color}`}></div>
+                      <CardContent className="pt-6">
+                        <div className={`inline-block px-3 py-1 rounded-full mb-4 ${skill.lightColor} text-gray-800 font-medium text-sm`}>
+                          {skill.day}
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">{skill.title}</h3>
+                        <p className="text-gray-600">{skill.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden md:flex md:justify-center mt-4 gap-1">
+              {skills.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full mx-1 ${
+                    current === index ? "bg-skillizee-blue" : "bg-gray-300"
+                  }`}
+                  onClick={() => api?.scrollTo(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </Carousel>
         </div>
 
         <div className="mt-16 text-center">

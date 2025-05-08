@@ -1,5 +1,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Lightbulb, Users, Target, UserPlus } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -61,8 +62,8 @@ const AboutSection = () => {
             </div>
             <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white p-4 rounded-lg shadow-sm flex items-start gap-3">
-                <div className="bg-skillizee-blue/20 rounded-full p-2 text-skillizee-blue font-bold">
-                  01
+                <div className="bg-skillizee-blue/20 rounded-full p-2 text-skillizee-blue">
+                  <Lightbulb size={24} />
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-800">Skill-Focused</h4>
@@ -71,8 +72,8 @@ const AboutSection = () => {
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm flex items-start gap-3">
-                <div className="bg-skillizee-orange/20 rounded-full p-2 text-skillizee-orange font-bold">
-                  02
+                <div className="bg-skillizee-orange/20 rounded-full p-2 text-skillizee-orange">
+                  <Target size={24} />
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-800">Age-Appropriate</h4>
@@ -81,8 +82,8 @@ const AboutSection = () => {
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm flex items-start gap-3">
-                <div className="bg-green-100 rounded-full p-2 text-green-600 font-bold">
-                  03
+                <div className="bg-green-100 rounded-full p-2 text-green-600">
+                  <Users size={24} />
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-800">Project-Based</h4>
@@ -91,8 +92,8 @@ const AboutSection = () => {
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm flex items-start gap-3">
-                <div className="bg-purple-100 rounded-full p-2 text-purple-600 font-bold">
-                  04
+                <div className="bg-purple-100 rounded-full p-2 text-purple-600">
+                  <UserPlus size={24} />
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-800">Community-Driven</h4>
