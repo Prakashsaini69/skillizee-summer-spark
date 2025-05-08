@@ -33,9 +33,11 @@ const Hero = () => {
               >
                 Register Now
               </Button>
-              <Button variant="outline" className="border-skillizee-blue text-skillizee-blue hover:bg-skillizee-blue/10 px-8 py-6 text-lg">
-                Download Brochure
-              </Button>
+              <a href="https://drive.google.com/uc?export=download&id=1_JaD5vaKL-CAgQgfK25qmoOn3WkroaSN" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-skillizee-blue hover:bg-skillizee-blue/90 text-white px-8 py-6">
+                  Download Brochure
+                </Button>
+              </a>
             </div>
           </div>
           <div className="md:w-1/2 relative">

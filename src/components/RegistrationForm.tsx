@@ -81,7 +81,7 @@ const RegistrationForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -93,27 +93,28 @@ const RegistrationForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
   
-    const scriptURL = "https://script.google.com/a/macros/cambridgecourtgroup.com/s/AKfycbyj9_27CrQXVcjIVps3laySUkZlyseao80kasOCNRqwKnA7jv5Nlc0JNoRqmh6AQDIbIg/exec"; // replace this
+    const scriptURL = "https://script.google.com/a/macros/cambridgecourtgroup.com/s/AKfycbyj9_27CrQXVcjIVps3laySUkZlyseao80kasOCNRqwKnA7jv5Nlc0JNoRqmh6AQDIbIg/exec";
+  
+    const formPayload = new FormData();
+    formPayload.append("studentName", formData.studentName);
+    formPayload.append("studentClass", formData.studentClass);
+    formPayload.append("phone", formData.phone);
+    formPayload.append("email", formData.email);
   
     try {
       const response = await fetch(scriptURL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: formPayload,
       });
   
       const result = await response.json();
   
       if (result.status === "success") {
-        // Show toast
         toast({
           title: "Registration submitted!",
           description: "Redirecting to payment page...",
         });
   
-        // Redirect after slight delay
         setTimeout(() => {
           window.location.href = "https://pages.razorpay.com/skillizeewebinar02";
         }, 2000);
@@ -141,6 +142,7 @@ const RegistrationForm = () => {
       });
     }
   };
+  
   
 
   return (
@@ -187,14 +189,21 @@ const RegistrationForm = () => {
               
               <div className="space-y-2">
                 <Label htmlFor="studentClass">Class</Label>
-                <Input 
+                <select
                   id="studentClass"
                   name="studentClass"
                   value={formData.studentClass}
                   onChange={handleChange}
                   required
-                  placeholder="Enter student's class"
-                />
+                  className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-skillizee-blue"
+                >
+                  <option value="">Select Class</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                </select>
               </div>
               
               <div className="space-y-2">
@@ -205,7 +214,9 @@ const RegistrationForm = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  placeholder="Enter phone number with country code"
+                  placeholder="Enter 10-digit phone number"
+                  pattern="^\d{10}$"
+                  title="Please enter a valid 10-digit phone number"
                 />
               </div>
               
