@@ -22,6 +22,16 @@ const Navbar = () => {
     };
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -39,19 +49,34 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <a href="#about" className="text-gray-700 hover:text-skillizee-blue">
+          <a 
+            onClick={() => scrollToSection('about')} 
+            className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
+          >
             About
           </a>
-          <a href="#skills" className="text-gray-700 hover:text-skillizee-blue">
+          <a 
+            onClick={() => scrollToSection('skills')} 
+            className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
+          >
             Skills
           </a>
-          <a href="#register" className="text-gray-700 hover:text-skillizee-blue">
+          <a 
+            onClick={() => scrollToSection('register')} 
+            className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
+          >
             Register
           </a>
-          <a href="#contact" className="text-gray-700 hover:text-skillizee-blue">
+          <a 
+            onClick={() => scrollToSection('contact')} 
+            className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
+          >
             Contact
           </a>
-          <Button className="bg-skillizee-orange hover:bg-skillizee-orange/90 text-white">
+          <Button 
+            onClick={() => scrollToSection('register')}
+            className="bg-skillizee-orange hover:bg-skillizee-orange/90 text-white"
+          >
             Enroll Now
           </Button>
         </div>
@@ -72,36 +97,32 @@ const Navbar = () => {
         <div className="md:hidden bg-white w-full py-4 px-6 shadow-md">
           <div className="flex flex-col space-y-4">
             <a
-              href="#about"
-              className="text-gray-700 hover:text-skillizee-blue"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('about')}
+              className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
             >
               About
             </a>
             <a
-              href="#skills"
-              className="text-gray-700 hover:text-skillizee-blue"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('skills')}
+              className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
             >
               Skills
             </a>
             <a
-              href="#register"
-              className="text-gray-700 hover:text-skillizee-blue"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('register')}
+              className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
             >
               Register
             </a>
             <a
-              href="#contact"
-              className="text-gray-700 hover:text-skillizee-blue"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('contact')}
+              className="text-gray-700 hover:text-skillizee-blue cursor-pointer"
             >
               Contact
             </a>
             <Button
               className="bg-skillizee-orange hover:bg-skillizee-orange/90 text-white w-full"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('register')}
             >
               Enroll Now
             </Button>

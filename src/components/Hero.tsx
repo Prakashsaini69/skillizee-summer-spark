@@ -2,6 +2,13 @@
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const scrollToRegistration = () => {
+    const registrationSection = document.getElementById("register");
+    if (registrationSection) {
+      registrationSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="relative bg-gradient-to-b from-skillizee-light-blue/30 to-white pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="container mx-auto px-4">
@@ -20,7 +27,10 @@ const Hero = () => {
               essential 21st-century meta skills through fun, interactive sessions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-skillizee-blue hover:bg-skillizee-blue/90 text-white px-8 py-6 text-lg">
+              <Button 
+                className="bg-skillizee-blue hover:bg-skillizee-blue/90 text-white px-8 py-6 text-lg"
+                onClick={scrollToRegistration}
+              >
                 Register Now
               </Button>
               <Button variant="outline" className="border-skillizee-blue text-skillizee-blue hover:bg-skillizee-blue/10 px-8 py-6 text-lg">
