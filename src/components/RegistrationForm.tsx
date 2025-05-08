@@ -8,11 +8,10 @@ import { useToast } from "@/components/ui/use-toast";
 const RegistrationForm = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    parentName: "",
     studentName: "",
-    studentAge: "",
-    email: "",
+    studentClass: "",
     phone: "",
+    email: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -37,11 +36,10 @@ const RegistrationForm = () => {
       });
       setIsSubmitting(false);
       setFormData({
-        parentName: "",
         studentName: "",
-        studentAge: "",
-        email: "",
+        studentClass: "",
         phone: "",
+        email: "",
       });
     }, 1500);
   };
@@ -68,59 +66,40 @@ const RegistrationForm = () => {
             </div>
             
             <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="parentName">Parent/Guardian Name</Label>
-                  <Input 
-                    id="parentName"
-                    name="parentName"
-                    value={formData.parentName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter parent/guardian name"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="studentName">Student Name</Label>
-                  <Input 
-                    id="studentName"
-                    name="studentName"
-                    value={formData.studentName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter student name"
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="studentName">Student Name</Label>
+                <Input 
+                  id="studentName"
+                  name="studentName"
+                  value={formData.studentName}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter student name"
+                />
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="studentAge">Student Age</Label>
-                  <Input 
-                    id="studentAge"
-                    name="studentAge"
-                    value={formData.studentAge}
-                    onChange={handleChange}
-                    required
-                    type="number"
-                    min="8"
-                    max="16"
-                    placeholder="Age (8-16)"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input 
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter phone number with country code"
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="studentClass">Class</Label>
+                <Input 
+                  id="studentClass"
+                  name="studentClass"
+                  value={formData.studentClass}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter student's class"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input 
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter phone number with country code"
+                />
               </div>
               
               <div className="space-y-2">
