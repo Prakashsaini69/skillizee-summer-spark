@@ -89,17 +89,49 @@ const RegistrationForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      toast({
-        title: "Registration submitted!",
-        description: "We will contact you shortly with next steps.",
+  
+    const scriptURL = "https://script.google.com/a/macros/cambridgecourtgroup.com/s/AKfycbyj9_27CrQXVcjIVps3laySUkZlyseao80kasOCNRqwKnA7jv5Nlc0JNoRqmh6AQDIbIg/exec"; // replace this
+  
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+  
+      const result = await response.json();
+  
+      if (result.status === "success") {
+        // Show toast
+        toast({
+          title: "Registration submitted!",
+          description: "Redirecting to payment page...",
+        });
+  
+        // Redirect after slight delay
+        setTimeout(() => {
+          window.location.href = "https://pages.razorpay.com/skillizeewebinar02";
+        }, 2000);
+      } else {
+        toast({
+          title: "Submission failed",
+          description: "Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast({
+        title: "Error occurred",
+        description: "Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
       setFormData({
         studentName: "",
@@ -107,8 +139,9 @@ const RegistrationForm = () => {
         phone: "",
         email: "",
       });
-    }, 1500);
+    }
   };
+  
 
   return (
     <section id="register" className="py-16 md:py-24">
